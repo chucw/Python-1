@@ -62,3 +62,5 @@ for i in dt_list:
             f.write('\n')
 
 f.close()
+
+# 10월 25일 github 연동
