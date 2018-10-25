@@ -48,8 +48,8 @@ for i in dt_list:
     if len_list == 0:
         pass
     else:
-        for j in range(0, len_list-1):
-            sql = "INSERT INTO `football` ( `game-date`, `homeTeam`, `homeScore`, `awayTeam`, `awayScore`, `league`) VALUES "
+        for j in range(0, len_list):
+            sql = "INSERT INTO `football` ( `game_date`, `homeTeam`, `homeScore`, `awayTeam`, `awayScore`, `league`) VALUES "
             sql = sql + '(' + "'" + str(i) + "','" + str(aaa[str(i)][j]["homeTeamName"]) + "'," + aaa[str(i)][j]["homeTeamScore"] + ",'" + str(aaa[str(i)][j]["awayTeamName"]) + "'," + aaa[str(i)][j]["awayTeamScore"] + ", 'europa');"
             curs.execute(sql)
 conn.commit()            
