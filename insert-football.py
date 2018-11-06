@@ -8,7 +8,7 @@ import pymysql
 import sys
 
 
-url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=europa&year=2018&month=10"
+url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=ligue1&year=2018&month=11"
 html = rq.get(url).text
 
 # print (html)
@@ -49,9 +49,13 @@ for i in dt_list:
         pass
     else:
         for j in range(0, len_list):
-            sql = "INSERT INTO `football` ( `game_date`, `homeTeam`, `homeScore`, `awayTeam`, `awayScore`, `league`) VALUES "
-            sql = sql + '(' + "'" + str(i) + "','" + str(aaa[str(i)][j]["homeTeamName"]) + "'," + aaa[str(i)][j]["homeTeamScore"] + ",'" + str(aaa[str(i)][j]["awayTeamName"]) + "'," + aaa[str(i)][j]["awayTeamScore"] + ", 'europa');"
+            sql = "INSERT INTO `football` ( `game_date`, `homeTeam`, `homeScore`, \
+            `awayTeam`, `awayScore`, `league`) VALUES "
+            sql = sql + '(' + "'" + str(i) + "','" + str(aaa[str(i)][j]["homeTeamName"]) + "'," \
+            + aaa[str(i)][j]["homeTeamScore"] + ",'" + str(aaa[str(i)][j]["awayTeamName"]) + "'," \
+            + aaa[str(i)][j]["awayTeamScore"] + ", 'ligue1');"
             curs.execute(sql)
-conn.commit()            
+conn.commit()   
+conn.close()         
 
 print ("OK")
