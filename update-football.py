@@ -8,7 +8,7 @@ import pymysql
 import sys
 
 
-url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=seria&year=2018&month=10"
+url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=champs&year=2018&month=11"
 html = rq.get(url).text
 
 # print (html)
@@ -32,7 +32,7 @@ period = calendar.monthrange(int(p1), int(p2))[1]
 
 
 
-start_date = p1 + p2 + '30'
+start_date = p1 + p2 + '01'
 end_date = p1 + p2 + str(period)
 
 dt_index = pandas.date_range(start=start_date, end=end_date)

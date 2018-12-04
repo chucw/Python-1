@@ -27,7 +27,7 @@ p2 = data["month"]
 
 period = calendar.monthrange(int(p1), int(p2))[1]
 
-start_date = p1 + p2 + '01'
+start_date = p1 + p2 + '07'
 end_date = p1 + p2 + str(period)
 #end_date = p1 + p2 + '07'
 

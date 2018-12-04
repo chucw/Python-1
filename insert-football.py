@@ -8,7 +8,7 @@ import pymysql
 import sys
 
 
-url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=ligue1&year=2018&month=11"
+url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=ligue1&year=2018&month=12"
 html = rq.get(url).text
 
 # print (html)
@@ -46,7 +46,7 @@ curs = conn.cursor()
 for i in dt_list:
     len_list = len(aaa[str(i)])
     if len_list == 0:
-        pass
+        print("No data")
     else:
         for j in range(0, len_list):
             sql = "INSERT INTO `football` ( `game_date`, `homeTeam`, `homeScore`, \
@@ -55,7 +55,7 @@ for i in dt_list:
             + aaa[str(i)][j]["homeTeamScore"] + ",'" + str(aaa[str(i)][j]["awayTeamName"]) + "'," \
             + aaa[str(i)][j]["awayTeamScore"] + ", 'ligue1');"
             curs.execute(sql)
-conn.commit()   
-conn.close()         
+conn.commit()
+conn.close()
 
 print ("OK")
