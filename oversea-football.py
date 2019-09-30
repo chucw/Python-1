@@ -40,34 +40,37 @@ for i in range(1, 30):
     s_empty = str(src1['empty'])
 #    s_empty = s_empty.strip()
 
-    if s_empty == 'False':
+    if s_empty != 'true':
 #        print(src1['date'])
 #        print(src1['scheduleList'])
 
         obj = src1['scheduleList']
         for j in range(0, len(obj)):
+            if obj[j]['homeTeamName'] is None:
+                pass
+            else:
 #            print(obj[j]['homeTeamName'])
 #            print(obj[j]['awayTeamName'])
 #            print(obj[j]['homeTeamScore'])
 #            print(obj[j]['awayTeamScore'])
 
-            sql = "SELECT COUNT(*) FROM football WHERE game_date = '" + src1['date'] + \
-                  "' and homeTeam = '" + obj[j]['homeTeamName'] + "'"
-#            print(sql)
+                sql = "SELECT COUNT(*) FROM football WHERE game_date = '" + src1['date'] + \
+                      "' and homeTeam = '" + obj[j]['homeTeamName'] + "'"
+#               print(sql)
 
-            curs.execute(sql)
+                curs.execute(sql)
 
-            result = curs.fetchall()
-            for row_data in result:
-                print(row_data[0])
+                result = curs.fetchall()
+                for row_data in result:
+#                    print(row_data[0])
 
-                if row_data[0] == 0:
-                    sql = "INSERT INTO `football` ( `game_date`, `homeTeam`, `homeScore`, \
+                    if row_data[0] == 0:
+                        sql = "INSERT INTO `football` ( `game_date`, `homeTeam`, `homeScore`, \
                                 `awayTeam`, `awayScore`, `league`) VALUES "
-                    sql = sql + '(' + "'" + str(src1['date']) + "','" + str(obj[j]["homeTeamName"]) + "'," \
+                        sql = sql + '(' + "'" + str(src1['date']) + "','" + str(obj[j]["homeTeamName"]) + "'," \
                           + obj[j]["homeTeamScore"] + ",'" + str(obj[j]["awayTeamName"]) + "'," \
                           + obj[j]["awayTeamScore"] + ", 'seria');"
-                    curs.execute(sql)
+                        curs.execute(sql)
 
 
 conn.commit()
