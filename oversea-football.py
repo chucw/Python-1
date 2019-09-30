@@ -44,6 +44,7 @@ for i in range(1, 30):
 #        print(src1['date'])
 #        print(src1['scheduleList'])
 
+
         obj = src1['scheduleList']
         for j in range(0, len(obj)):
             if obj[j]['homeTeamName'] is None:
