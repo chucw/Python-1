@@ -7,7 +7,7 @@ import pandas
 import sys
 
 
-url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=seria&year=2019&month=08"
+url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=epl&year=2019&month=10"
 html = rq.get(url).text
 
 #print (html)
@@ -28,7 +28,7 @@ src = tt[:c1-2]
 
 
 
-for i in range(1, 31):
+for i in range(0, 1):
 #    print(i)
 #    print(json.loads(src)[i])
     src1 = json.loads(src)[i]
