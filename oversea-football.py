@@ -8,7 +8,7 @@ import pymysql
 import sys
 
 
-url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=seria&year=2019&month=09"
+url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=eredivisie&year=2019&month=10"
 html = rq.get(url).text
 
 #print (html)
@@ -31,7 +31,7 @@ src = tt[:c1-2]
 conn = pymysql.connect(host='localhost', port=3306,  db='betman', user='root', password='syjm1998')
 curs = conn.cursor()
 
-for i in range(1, 30):
+for i in range(1, 31):
 #    print(i)
 #    print(json.loads(src)[i])
     src1 = json.loads(src)[i]
@@ -70,7 +70,7 @@ for i in range(1, 30):
                                 `awayTeam`, `awayScore`, `league`) VALUES "
                         sql = sql + '(' + "'" + str(src1['date']) + "','" + str(obj[j]["homeTeamName"]) + "'," \
                           + obj[j]["homeTeamScore"] + ",'" + str(obj[j]["awayTeamName"]) + "'," \
-                          + obj[j]["awayTeamScore"] + ", 'seria');"
+                          + obj[j]["awayTeamScore"] + ", 'eredivisie');"
                         curs.execute(sql)
 
 
