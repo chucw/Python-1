@@ -3,7 +3,7 @@ import requests as rq
 from bs4 import BeautifulSoup
 import pymysql
 
-url = "https://sports.news.naver.com/basketball/schedule/index.nhn?category=nba&year=2018&month=11"
+url = "https://sports.news.naver.com/basketball/schedule/index.nhn?category=nba&year=2019&month=10"
 html = rq.get(url).text
 soup = BeautifulSoup(html, 'html.parser')
 
@@ -39,7 +39,7 @@ for i in range(len(t_div)):
         if td_hour == '-':
             pass
         else:
-            game_date = '2018' + month + dat
+            game_date = '2019' + month + dat
             hometeam = t_div[i].find('span',{'class':'team_lft'}).text
             score = t_div[i].find('strong',{'class':'td_score'}).text
             s_len = len(score)
@@ -48,22 +48,42 @@ for i in range(len(t_div)):
             away_score = score[s_find+1:]
             awayteam = t_div[i].find('span',{'class':'team_rgt'}).text
            
-            print(game_date, end=' ')
-            print(hometeam, end=' ')
-            print(home_score, end=' ')
-            print(away_score, end=' ')
-            print(awayteam)
+#            print(game_date, end=' ')
+#            print(hometeam, end=' ')
+#            print(home_score, end=' ')
+#            print(away_score, end=' ')
+#            print(awayteam)
 
-            if game_date >= '20181101' and game_date <= '20181128':
-                sql = "INSERT INTO `basketball` ( `game_date`, `homeTeam`, `homeScore`, \
-                `awayTeam`, `awayScore`, `league`) VALUES "
-                sql = sql + '(' + "'" + str(game_date) + "','" + str(hometeam) + "'," \
-                + home_score + ",'" + str(awayteam) + "', " + away_score + ", 'NBA');"
-                print(sql)
+            if home_score == 'V':
+                pass
+            else:
+
+                sql = "SELECT COUNT(*) FROM football WHERE game_date = '" + str(game_date) + "'"
+                sql = sql + " and homeTeam = '" + str(hometeam) + "'"
+                sql = sql + " and awayTeam = '" + str(awayteam) + "'"
+
                 curs.execute(sql)
 
-    else:
-        pass
+                result = curs.fetchall()
+                for row_data in result:
+                    if row_data[0] == 0:
+                        sql = "INSERT INTO `basketball` ( `game_date`, `homeTeam`, `homeScore`, \
+                                        `awayTeam`, `awayScore`, `league`) VALUES "
+                        sql = sql + '(' + "'" + str(game_date) + "','" + str(hometeam) + "'," \
+                              + home_score + ",'" + str(awayteam) + "', " + away_score + ", 'NBA');"
+                        curs.execute(sql)
+    #                    print(sql)
+                    else:
+                        sql = "UPDATE `basketball` SET "
+                        sql = sql + "homeScore = " + home_score
+                        sql = sql + ", awayScore = " + away_score
+                        sql = sql + " where game_date = '" + str(game_date) + "'"
+                        sql = sql + " and homeTeam = '" + str(hometeam) + "'"
+                        sql = sql + " and awayTeam = '" + str(awayteam) + "'"
+                        sql = sql + " and league = 'NBA'"
+                        curs.execute(sql)
+
+
 conn.commit()   
 conn.close()         
 
