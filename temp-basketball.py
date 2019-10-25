@@ -11,19 +11,23 @@ from urllib.request import urlopen
 
 #url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=europa&year=2018&month=10"
 
-html = urlopen("https://sports.news.naver.com/basketball/schedule/index.nhn?date=20191005&month=10&year=2018&teamCode=&category=kbl")
+html = urlopen("https://www.kbl.or.kr/schedule/today/list.asp")
 
 soup = BeautifulSoup(html, 'html.parser')
 
 data = soup.findAll("tbody")
 
 
-#print(len(data))
-for i in range(12,13):
+print(len(data))
+
+
+for i in range(0,len(data)):
     txt = data[i]
-    td_hour = txt.select_one('span.td_hour').text
+    home_list = txt.select('span.home')
+    for j in range(0, len(home_list)):
+        print(home_list[0])
 
-
+    '''
     if td_hour == '-':
         pass
     else:
@@ -44,7 +48,7 @@ for i in range(12,13):
 #        print(td_hour2)
 
 
-    '''
+
 
     if td_hour == '-':
         pass
