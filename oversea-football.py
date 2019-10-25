@@ -83,7 +83,6 @@ for i in range(0, 31):
                         curs.execute(sql)
 
 conn.commit()
-
 conn.close()
 
 print('OK')
