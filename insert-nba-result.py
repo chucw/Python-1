@@ -67,17 +67,17 @@ for i in range(len(t_div)):
                     if row_data[0] == 0:
                         sql = "INSERT INTO `basketball` ( `game_date`, `homeTeam`, `homeScore`, \
                                         `awayTeam`, `awayScore`, `league`) VALUES "
-                        sql = sql + '(' + "'" + str(game_date) + "','" + str(hometeam) + "'," \
-                              + home_score + ",'" + str(awayteam) + "', " + away_score + ", 'NBA');"
+                        sql = sql + '(' + "'" + str(game_date) + "','" + str(awayteam) + "'," \
+                              + away_score + ",'" + str(hometeam) + "', " + home_score + ", 'NBA');"
                         curs.execute(sql)
                     #                    print(sql)
                     else:
                         sql = "UPDATE `basketball` SET "
-                        sql = sql + "homeScore = " + home_score
-                        sql = sql + ", awayScore = " + away_score
+                        sql = sql + "homeScore = " + away_score
+                        sql = sql + ", awayScore = " + home_score
                         sql = sql + " where game_date = '" + str(game_date) + "'"
-                        sql = sql + " and homeTeam = '" + str(hometeam) + "'"
-                        sql = sql + " and awayTeam = '" + str(awayteam) + "'"
+                        sql = sql + " and homeTeam = '" + str(awayteam) + "'"
+                        sql = sql + " and awayTeam = '" + str(hometeam) + "'"
                         sql = sql + " and league = 'NBA'"
                         curs.execute(sql)
 
