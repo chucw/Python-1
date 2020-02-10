@@ -30,14 +30,14 @@ for i in range(len(t_div)):
                 dat = '0' + td_date[b + 1:b + 2]
         else:
             month = '0' + td_date[0:b]
-            dat = dat = '0' + td_date[b + 1]
+            dat = '0' + td_date[b + 1]
 
     if t_div[i].find('span', {'class': 'td_hour'}):
         td_hour = t_div[i].find('span', {'class': 'td_hour'}).text
         if td_hour == '-':
             pass
         else:
-            game_date = '2019' + month + dat
+            game_date = '2020' + month + dat
             hometeam = t_div[i].find('span', {'class': 'team_lft'}).text
             score = t_div[i].find('strong', {'class': 'td_score'}).text
             s_len = len(score)
@@ -57,14 +57,17 @@ for i in range(len(t_div)):
             else:
 
                 sql = "SELECT COUNT(*) FROM basketball WHERE game_date = '" + str(game_date) + "'"
-                sql = sql + " and homeTeam = '" + str(hometeam) + "'"
-                sql = sql + " and awayTeam = '" + str(awayteam) + "'"
+                sql = sql + " and homeTeam = '" + str(awayteam) + "'"
+                sql = sql + " and awayTeam = '" + str(hometeam) + "'"
+
+#                print(sql)
 
                 curs.execute(sql)
 
                 result = curs.fetchall()
                 for row_data in result:
                     if row_data[0] == 0:
+                        
                         sql = "INSERT INTO `basketball` ( `game_date`, `homeTeam`, `homeScore`, \
                                         `awayTeam`, `awayScore`, `league`) VALUES "
                         sql = sql + '(' + "'" + str(game_date) + "','" + str(awayteam) + "'," \
