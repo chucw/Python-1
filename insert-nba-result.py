@@ -9,7 +9,7 @@ soup = BeautifulSoup(html, 'html.parser')
 
 t_div = soup.find_all("tr")
 
-conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\sheep\Documents\betman.accdb;')
+conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\sheep\OneDrive\betman\betman.accdb;')
 curs = conn.cursor()
 
 for i in range(len(t_div)):
@@ -56,7 +56,7 @@ for i in range(len(t_div)):
                 pass
             else:
 
-                sql = "SELECT COUNT(*) FROM basketball WHERE game_date = '" + str(game_date) + "'"
+                sql = "SELECT COUNT(*) FROM game_result WHERE game_date = '" + str(game_date) + "'"
                 sql = sql + " and homeTeam = '" + str(awayteam) + "'"
                 sql = sql + " and awayTeam = '" + str(hometeam) + "'"
 
@@ -68,14 +68,14 @@ for i in range(len(t_div)):
                 for row_data in result:
                     if row_data[0] == 0:
                         
-                        sql = "INSERT INTO `basketball` ( `game_date`, `homeTeam`, `homeScore`, \
+                        sql = "INSERT INTO `game_result` ( `game_date`, `homeTeam`, `homeScore`, \
                                         `awayTeam`, `awayScore`, `league`) VALUES "
                         sql = sql + '(' + "'" + str(game_date) + "','" + str(awayteam) + "'," \
                               + away_score + ",'" + str(hometeam) + "', " + home_score + ", 'NBA');"
                         curs.execute(sql)
                     #                    print(sql)
                     else:
-                        sql = "UPDATE `basketball` SET "
+                        sql = "UPDATE `game_result` SET "
                         sql = sql + "homeScore = " + away_score
                         sql = sql + ", awayScore = " + home_score
                         sql = sql + " where game_date = '" + str(game_date) + "'"
