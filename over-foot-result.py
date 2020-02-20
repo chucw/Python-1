@@ -7,7 +7,7 @@ import pandas
 import sys
 import pyodbc
 
-url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=ligue1&year=2020&month=02"
+url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=epl&year=2020&month=02"
 html = rq.get(url).text
 
 #print (html)
@@ -24,7 +24,7 @@ c1 = tt.find("monthList")
 
 src = tt[:c1 - 2]
 
-conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\sheep\Documents\betman.accdb;')
+conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\sheep\OneDrive\betman\betman.accdb;')
 curs = conn.cursor()
 
 for i in range(0, 29):
@@ -50,7 +50,7 @@ for i in range(0, 29):
                 #            print(obj[j]['homeTeamScore'])
                 #            print(obj[j]['awayTeamScore'])
 
-                sql = "SELECT COUNT(*) FROM football WHERE game_date = '" + src1['date'] + \
+                sql = "SELECT COUNT(*) FROM game_result WHERE game_date = '" + src1['date'] + \
                       "' and homeTeam = '" + obj[j]['homeTeamName'] + "'"
 #               print(sql)
 
@@ -61,14 +61,14 @@ for i in range(0, 29):
                     #                    print(row_data[0])
 
                     if row_data[0] == 0:
-                        sql = "INSERT INTO `football` ( `game_date`, `homeTeam`, `homeScore`, \
+                        sql = "INSERT INTO `game_result` ( `game_date`, `homeTeam`, `homeScore`, \
                                 `awayTeam`, `awayScore`, `league`) VALUES "
                         sql = sql + '(' + "'" + str(src1['date']) + "','" + str(obj[j]["homeTeamName"]) + "'," \
                             + obj[j]["homeTeamScore"] + ",'" + str(obj[j]["awayTeamName"]) + "'," \
-                            + obj[j]["awayTeamScore"] + ", 'ligue1');"
+                            + obj[j]["awayTeamScore"] + ", 'epl');"
                         curs.execute(sql)
                     else:
-                        sql = "UPDATE `football` SET "
+                        sql = "UPDATE `game_result` SET "
                         sql = sql + "homeScore = " + obj[j]["homeTeamScore"]
                         sql = sql + ", awayScore = " + obj[j]["awayTeamScore"]
                         sql = sql + " where game_date = '" + \
@@ -77,7 +77,7 @@ for i in range(0, 29):
                             str(obj[j]["homeTeamName"]) + "'"
                         sql = sql + " and awayTeam = '" + \
                             str(obj[j]["awayTeamName"]) + "'"
-                        sql = sql + " and league = 'ligue1'"
+                        sql = sql + " and league = 'epl'"
                         curs.execute(sql)
 
 conn.commit()
