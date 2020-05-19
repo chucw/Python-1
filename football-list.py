@@ -5,8 +5,7 @@ import json
 import calendar
 import pandas
 
-url = "   https://sports.news.naver.com/kfootball/schedule/index.nhn?category= \
-kleague&year=2018&month=10"
+url = "https://sports.news.naver.com/kfootball/schedule/index.nhn?category=kleague&year=2020&month=05"
 
 html = rq.get(url).text
 
