@@ -7,7 +7,7 @@ import pandas
 import sys
 import pyodbc
 
-url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=epl&year=2020&month=02"
+url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=bundesliga&year=2020&month=05"
 html = rq.get(url).text
 
 #print (html)
@@ -65,7 +65,7 @@ for i in range(0, 29):
                                 `awayTeam`, `awayScore`, `league`) VALUES "
                         sql = sql + '(' + "'" + str(src1['date']) + "','" + str(obj[j]["homeTeamName"]) + "'," \
                             + obj[j]["homeTeamScore"] + ",'" + str(obj[j]["awayTeamName"]) + "'," \
-                            + obj[j]["awayTeamScore"] + ", 'epl');"
+                            + obj[j]["awayTeamScore"] + ", 'bundesliga');"
                         curs.execute(sql)
                     else:
                         sql = "UPDATE `game_result` SET "
@@ -77,7 +77,7 @@ for i in range(0, 29):
                             str(obj[j]["homeTeamName"]) + "'"
                         sql = sql + " and awayTeam = '" + \
                             str(obj[j]["awayTeamName"]) + "'"
-                        sql = sql + " and league = 'epl'"
+                        sql = sql + " and league = 'bundesliga'"
                         curs.execute(sql)
 
 conn.commit()

@@ -7,7 +7,7 @@ import pandas
 import pymysql
 import sys
 
-url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=epl&year=2020&month=02"
+url = "https://sports.news.naver.com/wfootball/schedule/index.nhn?category=bundesliga&year=2020&month=03"
 html = rq.get(url).text
 
 #print (html)
