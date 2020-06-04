@@ -6,7 +6,7 @@ import calendar
 import pandas
 import pymysql
 
-url = "https://sports.news.naver.com/kfootball/schedule/index.nhn?category=kleague&year=2018&month=11"
+url = "https://sports.news.naver.com/kfootball/schedule/index.nhn?category=kleague&year=2020&month=05"
 
 html = rq.get(url).text
 
@@ -34,7 +34,9 @@ end_date = p1 + p2 + '06'
 dt_index = pandas.date_range(start=start_date, end=end_date)
 dt_list = dt_index.strftime("%Y%m%d").tolist()
 
-conn = pymysql.connect(host='localhost', port=3306,  db='betman', user='root', password='syjm1998')
+#conn = pymysql.connect(host='localhost', port=3306,  db='betman', user='root', password='syjm1998')
+
+conn = pymysql.connect(host='localhost', port=3306,  db='betman', user='starpos', password='starpos3691')
 curs = conn.cursor()
 
 
