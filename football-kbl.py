@@ -7,7 +7,7 @@ import pandas
 import sys
 import pyodbc
 
-url = "https://sports.news.naver.com/kfootball/schedule/index.nhn?category=kleague&year=2020&month=05"
+url = "https://sports.news.naver.com/kfootball/schedule/index.nhn?category=kleague&year=2020&month=06"
 html = rq.get(url).text
 
 #print (html)
