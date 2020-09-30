@@ -1,0 +1,45 @@
+Calling MySQL stored procedure in Python using MySQLdb
+[code sql]
+DELIMITER //
+
+DROP PROCEDURE IF EXISTS TEST//
+CREATE PROCEDURE TEST(
+    IN a_sitename VARCHAR(100),
+    OUT message VARCHAR(100)
+)
+BEGIN
+
+DECLARE v_site_id INT;
+DECLARE EXIT HANDLER FOR NOT FOUND
+
+BEGIN
+SET v_site_id=-1;
+SET message ="Error in getting site information";
+END;
+
+— Get the site id
+SELECT id INTO v_site_id FROM site WHERE sitename=a_sitename;
+
+END//
+DELIMITER ;
+[/code]
+[code python]
+message=""
+import MySQLdb
+conn = MySQLdb.connect(host = ‘127.0.0.1′, user = ‘xxx’, passwd = ‘yyy’, db=’test’)
+cursor = conn.cursor ()
+Call cursor.callproc(‘TEST’,(‘test_site_name’,message))
+cursor.execute("SELECT @_TEST_1")
+row = cursor.fetchone ()
+print row[0]
+cursor.close ()
+conn.close()
+[/code]
+[code]
+call TEST(‘test_site’,@result);
+select @result;
+
+or
+
+SELECT @_TEST_1;
+[/code]
