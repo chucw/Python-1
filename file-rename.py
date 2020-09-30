@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import os
 
 file_path = 'C:\\Users\\jeong\\Desktop\\사진\\pictures'

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #-*- coding: utf-8 -*
 import re
 import requests as rq
@@ -23,5 +24,3 @@ print(tt_2)
 
 
 ##aaa = data['relayDataUrl']
-
-#print(aaa)
