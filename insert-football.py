@@ -40,7 +40,7 @@ dt_index = pandas.date_range(start=start_date, end=end_date)
 dt_list = dt_index.strftime("%Y%m%d").tolist()
 
 #f = open('primera.txt', 'a')
-conn = pymysql.connect(host='localhost', port=3306,  db='betman', user='root', password='syjm1998')
+conn = pymysql.connect(host='119.194.242.212', port=3306,  db='betman', user='root', password='syjm1998')
 curs = conn.cursor()
 
 
