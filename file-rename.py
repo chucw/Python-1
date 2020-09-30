@@ -10,5 +10,3 @@ for name in file_names:
     dst = os.path.join(file_path, dst)
     os.rename(src, dst)
     i += 1
-
-print ("OK")
