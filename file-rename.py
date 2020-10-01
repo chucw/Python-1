@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 import os
 
-file_path = 'C:\\Users\\jeong\\Desktop\\사진\\pictures'
+file_path = 'E:\\practice\\Data Science\\Kaggle 파이썬을 활용한 머신러닝 실전 예제 분석'
 file_names = os.listdir(file_path)
 
 i = 1
