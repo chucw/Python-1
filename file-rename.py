@@ -1,6 +1,6 @@
 import os
 
-file_path = 'E:\\practice\\Data Science\\파이썬 기반의 AI를 위한 기초수학, 확률 및 통계'
+file_path = 'E:\\practice\\제안서\\입찰전쟁에서 승리하는 제안의 기술'
 file_names = os.listdir(file_path)
 
 i = 1
