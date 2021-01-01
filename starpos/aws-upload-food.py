@@ -26,7 +26,7 @@ for row_data in result:
         `total`, `receipt_info`, `created_dt`, `mod_dt`, `reg_dt`) values \
 		("+str(row_data[0])+", '"+str(row_data[1])+"', '"+cus_cd+"', "+str(row_data[2])+", "+str(row_data[3])+", \
 		 "+str(row_data[4])+",  "+str(row_data[5])+", "+str(row_data[6])+", "+str(row_data[7])+", "+str(row_data[8])+", \
-		 "+str(row_data[9])+", '"+str(row_data[10])+"', "+str(row_data[11])+", "+UNIX_TIMESTAMP(str(row_data[12]))+", NOW()  ); "
+		 "+str(row_data[9])+", '"+str(row_data[10])+"', "+str(row_data[11])+", UNIX_TIMESTAMP("+str(row_data[12])+"), NOW()  ); "
 
     curs2.execute(sql2)
     print(sql2)

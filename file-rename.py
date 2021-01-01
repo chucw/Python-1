@@ -1,6 +1,6 @@
 import os
 
-file_path = 'E:\\practice\\제안서\\입찰전쟁에서 승리하는 제안의 기술'
+file_path = 'E:\\practice\\Data Science\\누구나 자료구조와 알고리즘'
 file_names = os.listdir(file_path)
 
 i = 1
