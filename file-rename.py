@@ -1,6 +1,7 @@
 import os
 
-file_path = 'E:\\practice\\Data Science\\누구나 자료구조와 알고리즘'
+#file_path = 'E:\\practice\\인프라-네트웍\\네트워크 엔지니어의 교과서'
+file_path = 'D:\\temp\\Language\\Python\\파이썬을 활용한 네트워크프로그래밍'
 file_names = os.listdir(file_path)
 
 i = 1
