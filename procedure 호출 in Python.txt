@@ -43,3 +43,5 @@ or
 
 SELECT @_TEST_1;
 [/code]
+
+소스트리테스트
